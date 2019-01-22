@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Add movie</h1>
+<div mat-dialog-content
+     class="searchContainer">
+    <mat-form-field>
+        <input #searchTitle
+               autocomplete="off"
+               matInput
+               placeholder="Search here..."
+               required
+               type="search"
+               (keyup.enter)="searchMovie(searchTitle.value)">
+        <mat-error>Please enter a movie</mat-error>
+    </mat-form-field>
+    <div class="movieSearchResults">
+        <mat-card *ngFor="let movie of moviesSearchResults; let i = index"
+                  class="eachMovieSearchResults">
+            <mat-card-header>
+                <mat-card-title>
+                    {{movie.title}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{movie.year}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-lg-image
+                 [src]="movie.posterPath">
+            <mat-card-actions class="matActionsCenter">
+                <button mat-button
+                        (click)="addMovie(i)"><mat-icon>add</mat-icon> </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

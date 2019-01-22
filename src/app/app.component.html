@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button
+          [matMenuTriggerFor]="menu">
+    <!-- [disabled]="!this.isAuthenticated"> -->
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <mat-card class="profileCard">
+    <mat-card-subtitle>{{ this.afAuth?.auth?.currentUser?.displayName }}</mat-card-subtitle>
+    <img *ngIf="this.afAuth.auth.currentUser?.photoURL"
+         mat-card-avatar
+         src="{{ this.afAuth.auth.currentUser.photoURL }}">
+    <mat-card-actions>
+      <button mat-button
+              (click)="logOut()">Sign out</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-menu>
+
+<mat-card class="cardPadding"
+          *ngIf="!isAuthenticated">
+  <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)"
+               (signInFailure)="errorCallback($event)">
+  </firebase-ui>
+</mat-card>
+
+<div class="moviesContainer">
+  <mat-card *ngFor="let movie of omdbService.moviesToWatch | async" class="eachMovieContainer">
+    <mat-card-header>
+      <mat-card-title>
+        {{movie.title}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{movie.year}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-lg-image
+         [src]="movie.posterPath">
+    <mat-card-actions class="matActionsCenter">
+      <button mat-button
+              (click)="deleteMovie(movie.key)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <!-- <h1 *ngFor="let movie of moviesToWatch">Test</h1> -->
+</div>
+
+<!-- <button (click)="getMovies()">Get movies</button> -->
+
+<button mat-mini-fab
+        color="primary"
+        class="addButton"
+        (click)="showMovieDialog()">
+  <mat-icon>add</mat-icon>
+</button>

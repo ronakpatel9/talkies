@@ -1,0 +1,20 @@
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.movieSearchResults {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.eachMovieSearchResults {
+    margin: 10px auto;
+}
+
+.matActionsCenter {
+    display: flex;
+    justify-content: center;
+  }

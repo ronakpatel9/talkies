@@ -1,0 +1,37 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.cardPadding {
+  margin-top: 0.5vw;
+}
+
+.profileCard {
+  /* width: 20vw; */
+  margin: 0px;
+}
+
+.addButton {
+  top: auto;
+  right: 1.8%;
+  bottom: 1.8%;
+  left: auto;
+  position: fixed !important;
+}
+
+.moviesContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1vmin;
+}
+
+.eachMovieContainer {
+  margin: 1vmin;
+}
+
+.matActionsCenter {
+  display: flex;
+  justify-content: center;
+}
